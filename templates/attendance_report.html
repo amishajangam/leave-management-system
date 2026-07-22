@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Attendance Report</h2>
+
+<table class="table table-bordered">
+
+<tr>
+<th>Employee</th>
+<th>Date</th>
+<th>Status</th>
+<th>In Time</th>
+<th>Out Time</th>
+</tr>
+
+{% for a in records %}
+
+<tr>
+<td>{{ a.employee }}</td>
+<td>{{ a.date }}</td>
+<td>{{ a.status }}</td>
+<td>{{ a.in_time }}</td>
+<td>{{ a.out_time }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

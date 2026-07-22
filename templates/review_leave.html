@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leave Review</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            margin:40px;
+        }
+
+        .card{
+            border:1px solid #ddd;
+            padding:20px;
+            margin-bottom:20px;
+            border-radius:10px;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        th,td{
+            border:1px solid #ddd;
+            padding:10px;
+            text-align:center;
+        }
+
+        th{
+            background:#f2f2f2;
+        }
+
+        .approve{
+            background:green;
+            color:white;
+            padding:10px 20px;
+            text-decoration:none;
+            border-radius:5px;
+        }
+
+        .reject{
+            background:red;
+            color:white;
+            padding:10px 20px;
+            text-decoration:none;
+            border-radius:5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Leave Review</h1>
+
+<div class="card">
+    <h2>Employee Details</h2>
+
+    <p><b>Name:</b> {{ employee.user.username }}</p>
+
+    <p><b>Total Leaves:</b> {{ employee.total_leaves }}</p>
+
+    <p><b>Used Leaves:</b> {{ employee.used_leaves }}</p>
+
+    <p><b>Remaining Leaves:</b> {{ remaining_leaves }}</p>
+</div>
+
+<div class="card">
+    <h2>Current Leave Request</h2>
+
+    <p><b>Type:</b> {{ leave.leave_type }}</p>
+
+    <p><b>Start Date:</b> {{ leave.start_date }}</p>
+
+    <p><b>End Date:</b> {{ leave.end_date }}</p>
+
+    <p><b>Reason:</b> {{ leave.reason }}</p>
+</div>
+
+<div class="card">
+
+    <h2>Previous Leaves</h2>
+
+    <table>
+        <tr>
+            <th>Type</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Status</th>
+        </tr>
+
+        {% for item in previous_leaves %}
+        <tr>
+            <td>{{ item.leave_type }}</td>
+            <td>{{ item.start_date }}</td>
+            <td>{{ item.end_date }}</td>
+            <td>{{ item.status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+<br>
+
+<div class="button-area">
+
+    <a href="/approve/{{ leave.id }}/" class="approve">
+        Approve
+    </a>
+
+    <a href="/reject/{{ leave.id }}/" class="reject">
+        Reject
+    </a>
+
+</div>
+
+</body>
+</html>

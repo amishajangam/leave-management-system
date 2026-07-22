@@ -1,0 +1,22 @@
+<h2>📊 Report Dashboard</h2>
+
+<a href="/reports/upload/">Upload New File</a>
+
+<h3>Status Summary:</h3>
+
+<div style="display:flex; gap:20px;">
+    {% for key, value in dashboard.items %}
+        <div style="padding:15px; background:#eee;">
+            <strong>{{ key }}</strong><br>
+            {{ value }}
+        </div>
+    {% endfor %}
+</div>
+
+<h3>Uploaded Files:</h3>
+
+<ul>
+    {% for report in reports %}
+        <li>{{ report.name }}</li>
+    {% endfor %}
+</ul>

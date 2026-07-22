@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Employee Dashboard</h1>
+
+<div class="card p-4 shadow">
+
+<h4>{{ emp.user.username }}</h4>
+
+<p>Total Leaves: 24</p>
+
+<p>
+Balance:
+<span class="badge bg-success">
+{{ emp.leave_balance }}
+</span>
+</p>
+
+<a href="/apply/" class="btn btn-primary">
+Apply Leave
+</a>
+
+</div>
+
+<br>
+
+<div class="card p-4 shadow">
+
+<h3>Leave History</h3>
+
+<table class="table table-bordered">
+
+<tr>
+<th>Leave Type</th>
+<th>Start</th>
+<th>End</th>
+<th>Status</th>
+</tr>
+{% for leave in leaves %}
+
+<tr>
+
+<td>{{leave.leave_type}}</td>
+
+<td>{{leave.start_date}}</td>
+
+<td>{{leave.end_date}}</td>
+
+<td>{{leave.status}}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endblock %}

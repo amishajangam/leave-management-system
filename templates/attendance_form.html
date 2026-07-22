@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card shadow p-4" style="max-width:700px;">
+
+<h2>Mark Attendance</h2>
+
+<form method="POST">
+
+{% csrf_token %}
+
+{{ form.as_p }}
+
+<button class="btn btn-success">
+Save
+</button>
+
+<a href="/attendance/list/" class="btn btn-secondary">
+Back
+</a>
+
+</form>
+
+</div>
+
+{% endblock %}

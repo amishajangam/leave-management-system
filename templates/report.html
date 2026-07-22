@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Reports</h1>
+
+<div class="card p-4 shadow">
+
+<form method="get" class="mb-3">
+
+<select
+name="branch"
+class="form-control"
+>
+
+<option value="">
+All Branches
+</option>
+
+{% for branch in branches %}
+
+<option value="{{branch.name}}">
+{{branch.name}}
+</option>
+
+{% endfor %}
+
+</select>
+
+<select name="department" class="form-control">
+
+<option value="">
+All Departments
+</option>
+
+{% for d in departments %}
+
+<option value="{{ d }}">
+{{ d }}
+</option>
+
+{% endfor %}
+
+</select>
+
+<br>
+
+<button class="btn btn-primary mt-2">
+Filter
+</button>
+
+</form>
+
+<a href="/excel/" class="btn btn-success mb-3">
+    Download Excel Report
+</a>
+
+<div class="row mt-3">
+
+<div class="col-md-3">
+<div class="card p-3 text-center">
+<h6>Total Leaves</h6>
+<h3>{{ total }}</h3>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card p-3 text-center">
+<h6>Approved</h6>
+<h3>{{ approved }}</h3>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card p-3 text-center">
+<h6>Pending</h6>
+<h3>{{ pending }}</h3>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card p-3 text-center">
+<h6>Rejected</h6>
+<h3>{{ rejected }}</h3>
+</div>
+</div>
+
+</div>
+
+<div class="card p-4 shadow">
+
+
+<table class="table table-bordered">
+
+<tr>
+<th>Employee</th>
+<th>Department</th>
+<th>Branch</th>
+<th>Leave Type</th>
+<th>Start Date</th>
+<th>End Date</th>
+<th>Reason</th>
+<th>Status</th>
+</tr>
+
+{% for leave in leaves %}
+
+<tr>
+
+<td>{{ leave.employee.user.username }}</td>
+
+<td>{{ leave.employee.department }}</td>
+
+<td>{{ leave.employee.branch }}</td>
+
+<td>{{ leave.leave_type }}</td>
+
+<td>{{ leave.start_date }}</td>
+
+<td>{{ leave.end_date }}</td>
+
+<td>{{ leave.reason }}</td>
+
+<td>
+
+{% if leave.status == 'Approved' %}
+<span class="badge bg-success">
+Approved
+</span>
+
+{% elif leave.status == 'Rejected' %}
+<span class="badge bg-danger">
+Rejected
+</span>
+
+{% elif leave.status == 'Pending' %}
+<span class="badge bg-warning">
+Pending
+</span>
+
+{% endif %}
+
+</td>
+
+<td>
+{% if att.in_time %}
+    {{ att.in_time }}
+{% else %}
+    -
+{% endif %}
+</td>
+
+<td>
+{% if att.out_time %}
+    {{ att.out_time }}
+{% else %}
+    -
+{% endif %}
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endblock %}

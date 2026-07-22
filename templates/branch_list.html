@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Branch List</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f4f4;
+padding:30px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+}
+
+th{
+background:#343a40;
+color:white;
+padding:10px;
+}
+
+td{
+padding:10px;
+border:1px solid #ddd;
+}
+
+.btn{
+background:green;
+color:white;
+padding:8px 15px;
+text-decoration:none;
+border-radius:5px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Branch Management</h2>
+
+<br>
+
+<a href="/branch/add/" class="btn">
+Add Branch
+</a>
+
+<br><br>
+
+<table>
+
+<tr>
+
+<th>ID</th>
+
+<th>Branch Name</th>
+
+<th>Action</th>
+
+</tr>
+
+{% for branch in branches %}
+
+<tr>
+
+<td>{{ branch.id }}</td>
+
+<td>{{ branch.name }}</td>
+
+<td>
+
+<a href="/branch/edit/{{ branch.id }}/">
+Edit
+</a>
+
+|
+
+<a href="/branch/delete/{{ branch.id }}/">
+Delete
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+
+</html>
